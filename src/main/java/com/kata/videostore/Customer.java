@@ -21,22 +21,14 @@ public class Customer {
   }
 
   public String statement() {
-
     String result = header(getName());
-
     result += rentalLines();
-
     result += footer(getTotalAmount(), getFrequentRenterPoints());
-
     return result;
   }
 
   private double getTotalAmount() {
-    double totalAmount = 0;
-    for (Rental rental : rentals) {
-      totalAmount += getAmount(rental);
-    }
-    return totalAmount;
+    return rentals.stream().mapToDouble(this::getAmount).sum();
   }
 
   private String rentalLines() {
