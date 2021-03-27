@@ -24,9 +24,8 @@ public class Customer {
 
     String result = header(getName());
 
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
 
+    int frequentRenterPoints = 0;
     for (Rental rental : rentals) {
       frequentRenterPoints++;
       if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
@@ -39,6 +38,7 @@ public class Customer {
       result += rentalLine(rental.getTitle(), getAmount(rental));
     }
 
+    double totalAmount = 0;
     for (Rental rental : rentals) {
       totalAmount += getAmount(rental);
     }
