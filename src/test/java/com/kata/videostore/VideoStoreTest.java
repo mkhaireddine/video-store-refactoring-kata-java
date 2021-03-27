@@ -17,7 +17,7 @@ public class VideoStoreTest {
 
   @Test
   public void testSingleNewReleaseStatement() {
-    customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
+    customer.addRental(new Rental(newRelease("The Cell"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -28,8 +28,8 @@ public class VideoStoreTest {
 
   @Test
   public void testDualNewReleaseStatement() {
-    customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
-    customer.addRental(new Rental(new Movie("The Tigger Movie", Movie.NEW_RELEASE), 3));
+    customer.addRental(new Rental(newRelease("The Cell"), 3));
+    customer.addRental(new Rental(newRelease("The Tigger Movie"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -37,6 +37,10 @@ public class VideoStoreTest {
             + "\tThe Tigger Movie\t9.0\n"
             + "You owed 18.0\n"
             + "You earned 4 frequent renter points\n");
+  }
+
+  private static Movie newRelease(String title) {
+    return new Movie(title, Movie.NEW_RELEASE);
   }
 
   @Test
