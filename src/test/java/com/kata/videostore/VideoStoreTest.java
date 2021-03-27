@@ -45,7 +45,7 @@ public class VideoStoreTest {
 
   @Test
   public void testSingleChildrensStatement() {
-    customer.addRental(new Rental(new Movie("The Tigger Movie", Movie.CHILDRENS), 3));
+    customer.addRental(new Rental(children("The Tigger Movie"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -54,9 +54,13 @@ public class VideoStoreTest {
             + "You earned 1 frequent renter points\n");
   }
 
+  private static Movie children(String title) {
+    return new Movie(title, Movie.CHILDRENS);
+  }
+
   @Test
   public void testSingleChildrensStatementRentedMoreThanThreeDaysAgo() {
-    customer.addRental(new Rental(new Movie("The Tigger Movie", Movie.CHILDRENS), 4));
+    customer.addRental(new Rental(children("The Tigger Movie"), 4));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
