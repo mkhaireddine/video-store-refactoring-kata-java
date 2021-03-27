@@ -35,7 +35,7 @@ public class Customer {
           && rental.getDaysRented() > 1) {
         frequentRenterPoints++;
       }
-      result += rentalLine(rental.getMovie().getTitle(), getAmount(rental));
+      result += rentalLine(getTitle(rental), getAmount(rental));
 
       totalAmount += getAmount(rental);
 
@@ -44,6 +44,10 @@ public class Customer {
     result += footer(totalAmount, frequentRenterPoints);
 
     return result;
+  }
+
+  private String getTitle(Rental rental) {
+    return rental.getMovie().getTitle();
   }
 
   private String rentalLine(String title, double amount) {
