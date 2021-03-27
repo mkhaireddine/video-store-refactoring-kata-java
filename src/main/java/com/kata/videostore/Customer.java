@@ -24,12 +24,9 @@ public class Customer {
 
     String result = header(getName());
 
-    int frequentRenterPoints = getFrequentRenterPoints();
     result += rentalLines();
 
-    double totalAmount = getTotalAmount();
-
-    result += footer(totalAmount, frequentRenterPoints);
+    result += footer(getTotalAmount(), getFrequentRenterPoints());
 
     return result;
   }
