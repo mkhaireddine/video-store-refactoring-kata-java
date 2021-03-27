@@ -71,9 +71,9 @@ public class VideoStoreTest {
 
   @Test
   public void testMultipleRegularStatement() {
-    customer.addRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.REGULAR), 1));
-    customer.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
-    customer.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
+    customer.addRental(new Rental(regular("Plan 9 from Outer Space"), 1));
+    customer.addRental(new Rental(regular("8 1/2"), 2));
+    customer.addRental(new Rental(regular("Eraserhead"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -84,14 +84,18 @@ public class VideoStoreTest {
             + "You earned 3 frequent renter points\n");
   }
 
+  private static Movie regular(String title) {
+    return new Movie(title, Movie.REGULAR);
+  }
+
   @Test
   @Disabled
   void generateHTML() {
 
     customer = new Customer("martin");
-    customer.addRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.REGULAR), 1));
-    customer.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
-    customer.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
+    customer.addRental(new Rental(regular("Plan 9 from Outer Space"), 1));
+    customer.addRental(new Rental(regular("8 1/2"), 2));
+    customer.addRental(new Rental(regular("Eraserhead"), 3));
 
     final String expected = "<h1>Rental Record for <em>martin</em></h1>\n"
         + "<table>\n"
