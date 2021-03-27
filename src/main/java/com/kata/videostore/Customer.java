@@ -27,14 +27,19 @@ public class Customer {
     int frequentRenterPoints = getFrequentRenterPoints();
     result += rentalLines();
 
-    double totalAmount = 0;
-    for (Rental rental : rentals) {
-      totalAmount += getAmount(rental);
-    }
+    double totalAmount = getTotalAmount();
 
     result += footer(totalAmount, frequentRenterPoints);
 
     return result;
+  }
+
+  private double getTotalAmount() {
+    double totalAmount = 0;
+    for (Rental rental : rentals) {
+      totalAmount += getAmount(rental);
+    }
+    return totalAmount;
   }
 
   private String rentalLines() {
