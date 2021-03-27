@@ -21,7 +21,7 @@ public class Customer {
   }
 
   public String statement() {
-    ConsoleRenderer consoleRenderer = new ConsoleRenderer();
+    Renderer consoleRenderer = new ConsoleRenderer();
     String result = consoleRenderer.header(getName());
     result += consoleRenderer.rentalLines(rentals);
     result += consoleRenderer.footer(getTotalAmount(), getFrequentRenterPoints());
