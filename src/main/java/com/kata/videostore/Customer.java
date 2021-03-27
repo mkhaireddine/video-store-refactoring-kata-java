@@ -37,8 +37,7 @@ public class Customer {
         frequentRenterPoints++;
       }
 
-      result += "\t" + rental.getMovie().getTitle() + "\t"
-          + thisAmount + "\n";
+      result += rentalLine(rental.getMovie().getTitle(), thisAmount);
       totalAmount += thisAmount;
 
     }
@@ -46,6 +45,10 @@ public class Customer {
     result += footer(totalAmount, frequentRenterPoints);
 
     return result;
+  }
+
+  private String rentalLine(String title, double amount) {
+    return String.format("\t%s\t%s\n", title, amount);
   }
 
   private double getAmount(Rental rental) {
