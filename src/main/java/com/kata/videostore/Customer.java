@@ -28,17 +28,19 @@ public class Customer {
     int frequentRenterPoints = 0;
 
     for (Rental rental : rentals) {
-
       frequentRenterPoints++;
-
       if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
           && rental.getDaysRented() > 1) {
         frequentRenterPoints++;
       }
+    }
+
+    for (Rental rental : rentals) {
       result += rentalLine(rental.getTitle(), getAmount(rental));
+    }
 
+    for (Rental rental : rentals) {
       totalAmount += getAmount(rental);
-
     }
 
     result += footer(totalAmount, frequentRenterPoints);
