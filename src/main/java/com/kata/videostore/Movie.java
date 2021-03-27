@@ -14,6 +14,18 @@ public class Movie {
     this.priceCode = priceCode;
   }
 
+  static Movie newRelease(String title) {
+    return new Movie(title, NEW_RELEASE);
+  }
+
+  static Movie children(String title) {
+    return new Movie(title, CHILDRENS);
+  }
+
+  static Movie regular(String title) {
+    return new Movie(title, REGULAR);
+  }
+
   public int getPriceCode() {
     return priceCode;
   }

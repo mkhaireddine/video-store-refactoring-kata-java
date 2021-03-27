@@ -17,7 +17,7 @@ public class VideoStoreTest {
 
   @Test
   public void testSingleNewReleaseStatement() {
-    customer.addRental(new Rental(newRelease("The Cell"), 3));
+    customer.addRental(new Rental(Movie.newRelease("The Cell"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -28,8 +28,8 @@ public class VideoStoreTest {
 
   @Test
   public void testDualNewReleaseStatement() {
-    customer.addRental(new Rental(newRelease("The Cell"), 3));
-    customer.addRental(new Rental(newRelease("The Tigger Movie"), 3));
+    customer.addRental(new Rental(Movie.newRelease("The Cell"), 3));
+    customer.addRental(new Rental(Movie.newRelease("The Tigger Movie"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -39,13 +39,9 @@ public class VideoStoreTest {
             + "You earned 4 frequent renter points\n");
   }
 
-  private static Movie newRelease(String title) {
-    return new Movie(title, Movie.NEW_RELEASE);
-  }
-
   @Test
   public void testSingleChildrensStatement() {
-    customer.addRental(new Rental(children("The Tigger Movie"), 3));
+    customer.addRental(new Rental(Movie.children("The Tigger Movie"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -54,13 +50,9 @@ public class VideoStoreTest {
             + "You earned 1 frequent renter points\n");
   }
 
-  private static Movie children(String title) {
-    return new Movie(title, Movie.CHILDRENS);
-  }
-
   @Test
   public void testSingleChildrensStatementRentedMoreThanThreeDaysAgo() {
-    customer.addRental(new Rental(children("The Tigger Movie"), 4));
+    customer.addRental(new Rental(Movie.children("The Tigger Movie"), 4));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -71,9 +63,9 @@ public class VideoStoreTest {
 
   @Test
   public void testMultipleRegularStatement() {
-    customer.addRental(new Rental(regular("Plan 9 from Outer Space"), 1));
-    customer.addRental(new Rental(regular("8 1/2"), 2));
-    customer.addRental(new Rental(regular("Eraserhead"), 3));
+    customer.addRental(new Rental(Movie.regular("Plan 9 from Outer Space"), 1));
+    customer.addRental(new Rental(Movie.regular("8 1/2"), 2));
+    customer.addRental(new Rental(Movie.regular("Eraserhead"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         "Rental Record for Fred\n"
@@ -84,18 +76,14 @@ public class VideoStoreTest {
             + "You earned 3 frequent renter points\n");
   }
 
-  private static Movie regular(String title) {
-    return new Movie(title, Movie.REGULAR);
-  }
-
   @Test
   @Disabled
   void generateHTML() {
 
     customer = new Customer("martin");
-    customer.addRental(new Rental(regular("Plan 9 from Outer Space"), 1));
-    customer.addRental(new Rental(regular("8 1/2"), 2));
-    customer.addRental(new Rental(regular("Eraserhead"), 3));
+    customer.addRental(new Rental(Movie.regular("Plan 9 from Outer Space"), 1));
+    customer.addRental(new Rental(Movie.regular("8 1/2"), 2));
+    customer.addRental(new Rental(Movie.regular("Eraserhead"), 3));
 
     final String expected = "<h1>Rental Record for <em>martin</em></h1>\n"
         + "<table>\n"
