@@ -23,7 +23,7 @@ public class Customer {
   public String statement() {
     double totalAmount = 0;
     int frequentRenterPoints = 0;
-    String result = "Rental Record for " + getName() + "\n";
+    String result = header(getName());
 
     for (Rental rental : rentals) {
       double thisAmount = 0;
@@ -65,6 +65,9 @@ public class Customer {
     return result;
   }
 
+  private String header(String name) {
+    return String.format("Rental Record for %s\n", name);
+  }
 
 
 }
