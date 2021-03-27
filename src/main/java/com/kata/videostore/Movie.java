@@ -29,7 +29,7 @@ public class Movie {
   double getAmount(int daysRented) {
     double thisAmount = 0;
     // determines the amount for each line
-    switch (getPriceCode()) {
+    switch (priceCode) {
       case REGULAR:
         thisAmount += 2;
         if (daysRented > 2) {
@@ -47,5 +47,14 @@ public class Movie {
         break;
     }
     return thisAmount;
+  }
+
+  int getFrequentRenterPoints(int daysRented) {
+    int frequentRenterPoints = 1;
+    if (priceCode == NEW_RELEASE
+        && daysRented > 1) {
+      frequentRenterPoints++;
+    }
+    return frequentRenterPoints;
   }
 }
