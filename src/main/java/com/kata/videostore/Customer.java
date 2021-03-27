@@ -65,9 +65,7 @@ public class Customer {
   }
 
   private String footer(double totalAmount, int frequentRenterPoints) {
-    String result = "You owed " + totalAmount + "\n";
-    result += "You earned " + frequentRenterPoints + " frequent renter points\n";
-    return result;
+    return String.format("You owed %s\nYou earned %d frequent renter points\n", totalAmount, frequentRenterPoints);
   }
 
   private String header(String name) {
