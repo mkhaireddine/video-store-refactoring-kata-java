@@ -1,13 +1,13 @@
 package com.kata.videostore;
 
-public class Movie {
+public abstract class Movie {
 
   public static final int CHILDRENS = 2;
   public static final int REGULAR = 0;
   public static final int NEW_RELEASE = 1;
 
   private String title;
-  private int priceCode;
+  int priceCode;
 
   public Movie(String title, int priceCode) {
     this.title = title;
@@ -15,15 +15,15 @@ public class Movie {
   }
 
   static Movie newRelease(String title) {
-    return new Movie(title, NEW_RELEASE);
+    return new NewReleaseMovie(title);
   }
 
   static Movie children(String title) {
-    return new Movie(title, CHILDRENS);
+    return new ChildrenMovie(title);
   }
 
   static Movie regular(String title) {
-    return new Movie(title, REGULAR);
+    return new RegularMovie(title);
   }
 
   public int getPriceCode() {
@@ -38,34 +38,7 @@ public class Movie {
     return title;
   }
 
-  double getAmount(int daysRented) {
-    double thisAmount = 0;
-    // determines the amount for each line
-    switch (priceCode) {
-      case REGULAR:
-        thisAmount += 2;
-        if (daysRented > 2) {
-          thisAmount += (daysRented - 2) * 1.5;
-        }
-        break;
-      case NEW_RELEASE:
-        thisAmount += daysRented * 3;
-        break;
-      case CHILDRENS:
-        thisAmount += 1.5;
-        if (daysRented > 3) {
-          thisAmount += (daysRented - 3) * 1.5;
-        }
-        break;
-    }
-    return thisAmount;
-  }
+  abstract double getAmount(int daysRented);
 
-  int getFrequentRenterPoints(int daysRented) {
-    var hasBonus = priceCode == NEW_RELEASE && daysRented > 1;
-    if (hasBonus) {
-      return 2;
-    }
-    return 1;
-  }
+  abstract int getFrequentRenterPoints(int daysRented);
 }
