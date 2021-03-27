@@ -28,13 +28,13 @@ public class Customer {
   }
 
   private double getTotalAmount() {
-    return rentals.stream().mapToDouble(this::getAmount).sum();
+    return rentals.stream().mapToDouble(Rental::getAmount).sum();
   }
 
   private String rentalLines() {
     String result = "";
     for (Rental rental : rentals) {
-      result += rentalLine(rental.getTitle(), getAmount(rental));
+      result += rentalLine(rental.getTitle(), rental.getAmount());
     }
     return result;
   }
@@ -53,29 +53,6 @@ public class Customer {
 
   private String rentalLine(String title, double amount) {
     return String.format("\t%s\t%s\n", title, amount);
-  }
-
-  private double getAmount(Rental rental) {
-    double thisAmount = 0;
-    // determines the amount for each line
-    switch (rental.getMovie().getPriceCode()) {
-      case Movie.REGULAR:
-        thisAmount += 2;
-        if (rental.getDaysRented() > 2) {
-          thisAmount += (rental.getDaysRented() - 2) * 1.5;
-        }
-        break;
-      case Movie.NEW_RELEASE:
-        thisAmount += rental.getDaysRented() * 3;
-        break;
-      case Movie.CHILDRENS:
-        thisAmount += 1.5;
-        if (rental.getDaysRented() > 3) {
-          thisAmount += (rental.getDaysRented() - 3) * 1.5;
-        }
-        break;
-    }
-    return thisAmount;
   }
 
   private String footer(double totalAmount, int frequentRenterPoints) {
