@@ -59,9 +59,14 @@ public class Customer {
 
     }
 
-    result += "You owed " + totalAmount + "\n";
-    result += "You earned " + frequentRenterPoints + " frequent renter points\n";
+    result += footer(totalAmount, frequentRenterPoints);
 
+    return result;
+  }
+
+  private String footer(double totalAmount, int frequentRenterPoints) {
+    String result = "You owed " + totalAmount + "\n";
+    result += "You earned " + frequentRenterPoints + " frequent renter points\n";
     return result;
   }
 
