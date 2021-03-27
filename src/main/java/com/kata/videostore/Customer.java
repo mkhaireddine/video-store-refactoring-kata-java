@@ -28,7 +28,6 @@ public class Customer {
     int frequentRenterPoints = 0;
 
     for (Rental rental : rentals) {
-      double thisAmount = getAmount(rental);
 
       frequentRenterPoints++;
 
@@ -36,9 +35,9 @@ public class Customer {
           && rental.getDaysRented() > 1) {
         frequentRenterPoints++;
       }
+      result += rentalLine(rental.getMovie().getTitle(), getAmount(rental));
 
-      result += rentalLine(rental.getMovie().getTitle(), thisAmount);
-      totalAmount += thisAmount;
+      totalAmount += getAmount(rental);
 
     }
 
