@@ -2,6 +2,7 @@ package com.kata.videostore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Customer {
 
@@ -32,11 +33,9 @@ public class Customer {
   }
 
   private String rentalLines() {
-    String result = "";
-    for (Rental rental : rentals) {
-      result += rentalLine(rental.getTitle(), rental.getAmount());
-    }
-    return result;
+    return rentals.stream()
+        .map(rental -> rentalLine(rental.getTitle(), rental.getAmount()))
+        .collect(Collectors.joining());
   }
 
   private int getFrequentRenterPoints() {
