@@ -50,9 +50,9 @@ public class Movie {
   }
 
   int getFrequentRenterPoints(int daysRented) {
+    var hasBonus = priceCode == NEW_RELEASE && daysRented > 1;
     int frequentRenterPoints = 1;
-    if (priceCode == NEW_RELEASE
-        && daysRented > 1) {
+    if (hasBonus) {
       frequentRenterPoints++;
     }
     return frequentRenterPoints;
