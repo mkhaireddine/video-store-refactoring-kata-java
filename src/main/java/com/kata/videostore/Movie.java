@@ -20,6 +20,10 @@ public abstract class Movie {
     return new RegularMovie(title);
   }
 
+  public static Movie promo(String title) {
+    return new PromoMovie(title);
+  }
+
   public String getTitle() {
     return title;
   }

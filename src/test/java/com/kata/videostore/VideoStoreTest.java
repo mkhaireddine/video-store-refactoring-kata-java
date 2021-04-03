@@ -110,11 +110,9 @@ public class VideoStoreTest {
 
 
   @Test
-  @Disabled
   public void testSinglePromoStatement() {
-    // Price : 0.5 per day
-    // frequent points : always 0
-    // customer.addRental(new Rental(new Movie("Promo 3", Movie.PROMO), 3));
+    customer = new Customer("Fred");
+    customer.addRental(new Rental(Movie.promo("Promo 3"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         """
@@ -126,11 +124,12 @@ public class VideoStoreTest {
   }
 
   @Test
-  @Disabled
   public void testMultiplePromoStatements() {
-//    customer.addRental(new Rental(new Movie("Promo 1", Movie.PROMO), 1));
-//    customer.addRental(new Rental(new Movie("Promo 2", Movie.PROMO), 2));
-//    customer.addRental(new Rental(new Movie("Promo 3", Movie.PROMO), 3));
+
+    customer = new Customer("Fred");
+    customer.addRental(new Rental(Movie.promo("Promo 1"), 1));
+    customer.addRental(new Rental(Movie.promo("Promo 2"), 2));
+    customer.addRental(new Rental(Movie.promo("Promo 3"), 3));
 
     assertThat(customer.statement()).isEqualTo(
         """
