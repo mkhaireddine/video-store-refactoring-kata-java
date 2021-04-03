@@ -22,18 +22,18 @@ public class Customer {
 
   public String statement() {
     Renderer consoleRenderer = new ConsoleRenderer();
-    String result = consoleRenderer.header(getName());
-    result += consoleRenderer.rentalLines(rentals);
-    result += consoleRenderer.footer(getTotalAmount(), getFrequentRenterPoints());
-    return result;
+    return generateStatement(consoleRenderer);
   }
 
   public String statementHTML() {
     Renderer consoleRenderer = new HtmlRenderer();
-    String result = consoleRenderer.header(getName());
-    result += consoleRenderer.rentalLines(rentals);
-    result += consoleRenderer.footer(getTotalAmount(), getFrequentRenterPoints());
-    return result;
+    return generateStatement(consoleRenderer);
+  }
+
+  private String generateStatement(Renderer renderer) {
+    return renderer.header(getName())
+        + renderer.rentalLines(rentals)
+        + renderer.footer(getTotalAmount(), getFrequentRenterPoints());
   }
 
   private double getTotalAmount() {
