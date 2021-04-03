@@ -1,4 +1,4 @@
-package com.kata.videostore;
+package com.kata.videostore.movie;
 
 public class PromoMovie extends Movie {
 
@@ -7,12 +7,12 @@ public class PromoMovie extends Movie {
   }
 
   @Override
-  double getAmount(int daysRented) {
+  public double getAmount(int daysRented) {
     return daysRented * 0.5;
   }
 
   @Override
-  int getFrequentRenterPoints(int daysRented) {
+  public int getFrequentRenterPoints(int daysRented) {
     return 0;
   }
 }

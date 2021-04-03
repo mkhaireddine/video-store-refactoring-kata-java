@@ -1,5 +1,8 @@
-package com.kata.videostore;
+package com.kata.videostore.renderer;
 
+import static java.util.stream.Collectors.joining;
+
+import com.kata.videostore.Rental;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +15,7 @@ public class ConsoleRenderer implements Renderer {
   public String rentalLines(List<Rental> rentals) {
     return rentals.stream()
         .map(rental -> rentalLine(rental.getTitle(), rental.getAmount()))
-        .collect(Collectors.joining());
+        .collect(joining());
   }
 
   @Override

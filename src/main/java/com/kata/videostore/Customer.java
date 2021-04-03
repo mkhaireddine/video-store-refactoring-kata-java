@@ -1,12 +1,15 @@
 package com.kata.videostore;
 
+import com.kata.videostore.renderer.ConsoleRenderer;
+import com.kata.videostore.renderer.HtmlRenderer;
+import com.kata.videostore.renderer.Renderer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
 
-  private String name;
-  private List<Rental> rentals = new ArrayList<>();
+  private final String name;
+  private final List<Rental> rentals = new ArrayList<>();
 
   public Customer(String name) {
     this.name = name;

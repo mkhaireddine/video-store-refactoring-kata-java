@@ -1,5 +1,6 @@
-package com.kata.videostore;
+package com.kata.videostore.renderer;
 
+import com.kata.videostore.Rental;
 import java.util.List;
 
 public interface Renderer {

@@ -1,7 +1,8 @@
-package com.kata.videostore;
+package com.kata.videostore.renderer;
 
 import static java.util.stream.Collectors.joining;
 
+import com.kata.videostore.Rental;
 import java.util.List;
 
 public class HtmlRenderer implements Renderer {
