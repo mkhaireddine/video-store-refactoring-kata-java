@@ -87,7 +87,6 @@ public class VideoStoreTest {
   }
 
   @Test
-  @Disabled
   void generateHTML() {
 
     customer = new Customer("martin");
@@ -106,7 +105,7 @@ public class VideoStoreTest {
         <p>You earned <em>3</em> frequent renter points</p>
         """;
 
-//    assertThat(customer.statementHTML()).isEqualTo(expected);
+    assertThat(customer.statementHTML()).isEqualTo(expected);
   }
 
 

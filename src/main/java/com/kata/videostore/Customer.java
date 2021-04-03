@@ -28,6 +28,14 @@ public class Customer {
     return result;
   }
 
+  public String statementHTML() {
+    Renderer consoleRenderer = new HtmlRenderer();
+    String result = consoleRenderer.header(getName());
+    result += consoleRenderer.rentalLines(rentals);
+    result += consoleRenderer.footer(getTotalAmount(), getFrequentRenterPoints());
+    return result;
+  }
+
   private double getTotalAmount() {
     return rentals.stream().mapToDouble(Rental::getAmount).sum();
   }
@@ -35,6 +43,5 @@ public class Customer {
   private int getFrequentRenterPoints() {
     return rentals.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
   }
-
 
 }
