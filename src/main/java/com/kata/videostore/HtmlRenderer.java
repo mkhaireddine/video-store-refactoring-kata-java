@@ -11,7 +11,7 @@ public class HtmlRenderer implements Renderer {
   public String rentalLines(List<Rental> rentals) {
     return rentals.stream()
         .map(rental -> rentalLine(rental.getTitle(), rental.getAmount()))
-        .collect(joining());
+        .collect(joining("\n","<table>\n","\n</table>\n"));
   }
 
   @Override
@@ -22,7 +22,7 @@ public class HtmlRenderer implements Renderer {
 
   @Override
   public String rentalLine(String title, double amount) {
-    return String.format("\t%s\t%s\n", title, amount);
+    return String.format("  <tr><td>%s</td><td>%s</td></tr>", title, amount);
   }
 
   @Override
