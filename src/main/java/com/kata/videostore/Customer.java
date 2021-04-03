@@ -21,13 +21,11 @@ public class Customer {
   }
 
   public String statement() {
-    Renderer consoleRenderer = new ConsoleRenderer();
-    return generateStatement(consoleRenderer);
+    return generateStatement(new ConsoleRenderer());
   }
 
   public String statementHTML() {
-    Renderer consoleRenderer = new HtmlRenderer();
-    return generateStatement(consoleRenderer);
+    return generateStatement(new HtmlRenderer());
   }
 
   private String generateStatement(Renderer renderer) {
